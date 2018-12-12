@@ -4,13 +4,13 @@
 | Sophos Enterprise Console username/password deobfuscator                                                               03/12/18 | 
 |                                                                                                                                 | 
 | Author: Joshua Coleman                                                                                                          | 
-| Usage:  ruby sophos_deobfuscate.rb <obfuscated>                                                                                 | 
+| Usage:  ruby sophos_deobfuscate.rb <obfuscated>                                                                                             | 
 |                                                                                                                                 | 
 | ObfuscationUtil.exe is a tool provided by Sophos to obfuscate administrator account credentials:                                | 
-|   ObfuscationUtil.exe --obfuscate <USERNAME> -w                                                                                 | 
-|   ObfuscationUtil.exe --obfuscate <PASSWORD> -w                                                                                 | 
+|   ObfuscationUtil.exe --obfuscate <USERNAME> -w                                                                                           | 
+|   ObfuscationUtil.exe --obfuscate <PASSWORD> -w                                                                                           | 
 |                                                                                                                                 | 
-|   "Where <USERNAME> and <PASSWORD> are the username and password that are needed to obfuscate.                                  | 
+|   "Where <USERNAME> and <PASSWORD> are the username and password that are needed to obfuscate.                                                      | 
 |   These credentials should have administrator privileges to access the files in the CID."                                       | 
 |     - https://community.sophos.com/kb/en-us/13094                                                                               | 
 |                                                                                                                                 | 
