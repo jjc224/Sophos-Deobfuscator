@@ -45,7 +45,7 @@ require 'openssl'
 #   This is then base64-encoded.
 #   The salt and IV must necessarily be embedded in the obfuscated string itself in order for Sophos to deobfuscate it given its dynamic nature.
 #     (i.e., when you obfuscate two identical inputs, you will acquire different output.)
-#   The standard/proper way of doing this would be by via a KDF (key distribution function).
+#   The standard/proper way of doing this would be by via a KDF (key derivation function).
 #
 #   Reverse engineering the binary showed this to be the case.
 #   Details are included in comments where appropriate.
