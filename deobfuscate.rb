@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby 
+#!/usr/bin/env ruby
 
 #  ---------------------------------------------------------------------------------------------------------------------------------
 # | Sophos Enterprise Console username/password deobfuscator                                                               03/12/18 |
@@ -33,7 +33,7 @@
 # | |   IV:             3e4f6d9aa6069a61                                                                                 |          |
 # | |                                                                                                                    |          |
 # | |   Deobfuscated:   ReallyGoodPassword                                                                               |          |
-# |  --------------------------------------------------------------------------------------------------------------------           | 
+# |  --------------------------------------------------------------------------------------------------------------------           |
 #  ---------------------------------------------------------------------------------------------------------------------------------
 
 require 'base64'
@@ -45,7 +45,7 @@ require 'openssl'
 #   This is then base64-encoded.
 #   The salt and IV must necessarily be embedded in the obfuscated string itself in order for Sophos to deobfuscate it given its dynamic nature.
 #     (i.e., when you obfuscate two identical inputs, you will acquire different output.)
-#   The standard/proper way of doing this would be by via a KDF (key derivation function).
+#   The standard/proper way of doing this would be by via a KDF (key distribution function).
 #
 #   Reverse engineering the binary showed this to be the case.
 #   Details are included in comments where appropriate.
@@ -80,7 +80,7 @@ def derive_key_and_iv(password, salt, count = 1, key_size = 48, iv_size = 16)
   (count - 1).times do |i|
     hashes[0] = Digest::MD5.hexdigest(hashes[0])
   end
-  
+
   digest_size = key_size + iv_size
   i = 1
 
@@ -101,7 +101,7 @@ end
 
 # int EVP_BytesToKey(const EVP_CIPHER *type, const EVP_MD *md,
 #                    const unsigned char *salt, const unsigned char *data,
-#                    int datal, int count, 
+#                    int datal, int count,
 #                    unsigned char *key, unsigned char *iv);
 #
 # 1. Breakpoint at EVP_BytesToKey (libeay32.dll).
@@ -120,10 +120,10 @@ end
 #       __ Address at ESP + 0x10 (const unsigned char *data): take `int datal` (48) worth of bytes.
 #      |
 #      v
-#   00123938  56 44 B2 62 91 12 C5 FA  VD²b‘Åú
+#   00123938  56 44 B2 62 91 12 C5 FA  VD²b‘Åú
 #   00123940  CF D1 59 23 E8 F0 97 49  ÏÑY#èð—I
 #   00123948  3B 73 45 5E AE 61 34 54  ;sE^®a4T
-#   00123950  48 5B C6 1F 78 5F 00 08  H[Æx_.
+#   00123950  48 5B C6 1F 78 5F 00 08  H[Æx_.
 #   00123958  B3 40 FC 34 E0 5A D9 8B  ³@ü4àZÙ‹
 #   00123960  71 AE D7 0D AB 3E 97 C9  q®×.«>—É
 
